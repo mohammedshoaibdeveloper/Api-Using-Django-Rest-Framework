@@ -1,5 +1,16 @@
-from django.urls import path
+from django.urls import path,include
 from .views import article_list,article_detail,ArticleAPIView,ArticleDetails,GenericAPIView
+
+# REST Framework Viewsets & Routers
+from .views import ArticleViewSet
+from rest_framework.routers import DefaultRouter
+
+
+router = DefaultRouter()
+router.register('article', ArticleViewSet, basename='article')
+
+
+# REST Framework Viewsets & Routers
 
 urlpatterns = [
     # REST Framework api_view() Decorator
@@ -12,6 +23,11 @@ urlpatterns = [
     
     # REST Generic Views & Mixins  
     path('generic/article/<int:id>/', GenericAPIView.as_view()),
+
+   # REST Framework Viewsets & Routers
+    path('viewset/', include(router.urls)),
+    path('viewset/<int:pk>/', include(router.urls))
+    # REST Framework Viewsets & Routers
     
    
 ]

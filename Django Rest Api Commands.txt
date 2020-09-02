@@ -1,0 +1,23 @@
+python manage.py shell 
+
+1. Shell Commands for Django REST Framework  Serializer  
+
+from apibasic.models import Article
+from apibasic.serializers import ArticleSerializer
+from rest_framework.renderers import JSONRenderer
+from rest_framework.parsers import JSONParser
+
+ a = Article(title='Article Title',author='Shoaib',email='shoaibbilal101@gmail.com')
+a.save()
+
+serializer = ArticleSerializer(a)
+serializer.data
+content = JSONRenderer().render(serializer.data)
+content 
+
+serializer = ArticleSerializer(Article.objects.all(),many=True)
+serializer.data
+
+2.REST Framework Modal Serializer
+serializer = ArticleSerializer()
+print(repr(serializer))
